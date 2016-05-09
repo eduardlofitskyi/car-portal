@@ -1,0 +1,97 @@
+﻿@using Auto.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+</head>
+<body>
+<div class="modal fade bs-example-modal-lg" id="regForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                @using (Html.BeginForm("SignUp", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="modal-body">
+                        <span id='messageFields'></span>
+                        <div class="form-group">
+                            <label for="regName" class="col-lg-2 control-label">Имя</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="regName" placeholder="Имя" name="regName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regLName" class="col-lg-2 control-label">Фамилия</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="regLName" placeholder="Фамилия" name="regLName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regDate" class="col-lg-2 control-label">Дата рождения</label>
+                            <div class="col-lg-10">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" name="datetimepicker1"/>
+                                    <span id='mesDate'></span>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function() {
+                                    $('#datetimepicker1').datetimepicker({
+                                        format: 'DD-MM-YYYY'
+                                    });
+                                });
+                            </script>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regCity" class="col-lg-2 control-label">Город</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="regCity" placeholder="Город" name="regCity">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regPhone" class="col-lg-2 control-label">Номер телефона</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="regPhone" placeholder="+380..." name="regPhone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regEmail" class="col-lg-2 control-label">email адрес</label>
+                            <div class="col-lg-10">
+                                <input type="email" class="form-control" id="regEmail" placeholder="Email" name="regEmail">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regPassword" class="col-lg-2 control-label">Пароль</label>
+                            <div class="col-lg-10">
+                                <input type="password" class="form-control" id="regPassword" placeholder="Пароль" name="regPassword">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regConPass" class="col-lg-2 control-label">Подтвердите пароль</label>
+                            <div class="col-lg-10">
+                                <input type="password" class="form-control" id="regConPass" placeholder="Подтверждение пароля" name="regConPass"><span id='message'></span>
+                            </div>
+                        </div>
+                    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" id ="regBut">Зарегистрироваться </button>
+    </div>
+    }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

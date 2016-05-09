@@ -1,0 +1,134 @@
+﻿@model Auto.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "GetAllVehicle";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.css" />
+
+    <link rel="stylesheet" href="/css/roboto.min.css">
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/ripples.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css" />
+
+
+    <script src=" />js/jquery-1.10.2.min.js"></script>
+    <script src="/js/ripples.min.js"></script>
+    <script src="/js/material.min.js"></script>
+    <script src="/js/snackbar.min.js"></script>
+    <script src="/js/jquery.nouislider.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/js/bootstrap-select.js"></script>
+    <script src="/js/i18n/defaults-ru_RU.js"></script>
+    <script src="/js/blockSelect.js"></script>
+
+
+
+    <meta name=" viewport" content="width=device-width" />
+</head>
+<body>
+    @Html.Partial("~/Views/Hello/PartialNavbar.cshtml")
+    @if (Model.VehicleList.Count != 0)
+    {
+        <table class=" table table-striped" id="car" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Марка</th>
+                    <th>Модель</th>
+                    <th>Год выпуска</th>
+                    <th>Цвет</th>
+                    <th>Объем двигателя</th>
+                    <th>Коробка передач</th>
+                    <th>Состояние машины</th>
+                    <th>Цена</th>
+                    <th>Комментарий</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{
+        int i = 0;
+        foreach (var mod in Model.VehicleList)
+        {
+            using (Html.BeginForm("DetailsVehicle", "DetailsVehicle", FormMethod.Post))
+            {
+                <input name="carId" type="hidden" value="@Model.VehicleList[i].Id">
+
+                i++;
+                <tr>
+                    <td>
+                        @mod.brand
+                    </td>
+                    <td>
+                        @mod.model
+                    </td>
+                    <td>
+                        @mod.releaseDate
+                    </td>
+                    <td>
+                        @mod.color
+                    </td>
+                    <td>
+                        @mod.capacity
+                    </td>
+                    @if (mod.autoKPP.Equals(true))
+                    {
+                        <td>
+                            Автоматическая
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Ручная
+                        </td>
+                    }
+                    @if (mod.isUses.Equals(false))
+                    {
+                        <td>
+                            Новая
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Подержанная
+                        </td>
+                    }
+                    <td>
+                        @mod.price $
+                    </td>
+                    <td>
+                        <div id="comment">@mod.title</div>
+                    </td>
+                    @if (Session["User"] != null)
+                    {
+                        <td>
+                            <button type="submit" class="btn btn-success">В корзину</button>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+            }
+        </table>
+    }
+    else
+    {
+        <h2>Ничего не найдено!</h2>
+
+    }
+
+</body>
+
+</html>

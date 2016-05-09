@@ -1,0 +1,170 @@
+﻿@using Auto.DAO.Context
+@using Auto.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/roboto.min.css">
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/ripples.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css"/>
+
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/ripples.min.js"></script>
+    <script src="/js/material.min.js"></script>
+    <script src="/js/snackbar.min.js"></script>
+    <script src="/js/jquery.nouislider.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/js/blockSelect.js"></script>
+
+    <meta name="viewport" content="width=device-width"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse" id="navbar-left">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://localhost:51487/Hello/Index">FknTeam</a>
+    </div>
+    <div class="navbar-collapse collapse collapse">
+        @if (Session["User"] != null)
+        {
+            <ul class="nav navbar-nav">
+                <li>
+                    @using (Html.BeginForm("GetAll", "Search", FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-default" id="btnGetAll">Просмотреть авто</button>
+                    }
+                </li>
+            </ul>
+            if (((UserLogin) Session["User"]).IsAdmin.Equals(true))
+            {
+                <ul class="nav navbar-nav">
+                    <li>
+                        @using (Html.BeginForm("GetForDelete", "Search", FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-default" id="btnGetDel">Удалить авто</button>
+                        }
+                    </li>
+                    <li><a href="http://localhost:51487/Hello/ViewAddCar">Добавить авто</a></li>
+                </ul>
+            }
+        }
+        <ul class="nav navbar-nav navbar-right" id="navbar-right">
+            <li>
+                @if (Session["User"] == null)
+                {
+                    <a href="#" role="button" data-toggle="modal" data-target="#regForm">
+                        Регистрация
+                    </a>
+                }
+            </li>
+
+            <li class="loginCenter">
+                @if (Session["User"] == null)
+                {
+                    using (Html.BeginForm("Login", "Login", FormMethod.Post, new {@class = "navbar-form navbar-right"}))
+                    {
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="E-mail" id="email">
+                        </div>
+                        <div class="form-group">
+
+                            <input type="password" class="form-control" name="password" placeholder="Пароль">
+                        </div>
+                        <button type="submit" class="btn btn-default" id="btnSign">Войти</button>
+                    }
+                }
+                else
+                {
+                    @(((UserLogin) Session["User"]).Name)
+
+                    using (Html.BeginForm("Logout", "Logout", FormMethod.Post, new {@class = "navbar-form navbar-right"}))
+                    {
+                        <button type="submit" class="btn btn-default" id="btnSign">Выйти</button>
+                    }
+                }
+
+
+
+            </li>
+            <li>
+                @if (Session["User"] != null)
+                {
+                    <a href="#" role="button" data-toggle="modal" data-target="#basicModal" id="cartModal">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    </a>
+                }
+            </li>
+        </ul>
+    </div>
+</nav>
+    @{
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Информация о покупках</h4>
+                    </div>
+                    <div class="modal-body">
+                        @if (Session["User"] != null)
+                        {
+                            var list = (List<Vehicle>)Session["Cart"];
+                            <table class=" table table-striped" id="car" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Марка</th>
+                                        <th>Модель</th>
+                                        <th>Цена</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @foreach (var car in list)
+                                {
+                                    using (Html.BeginForm("DeleteFromCart", "DetailsVehicle", FormMethod.Post))
+                                    {
+                                        <input name="carId" type="hidden" value="@car.Id">
+
+                                        <tr>
+                                            <td>
+                                                @car.brand
+                                            </td>
+                                            <td>
+                                                @car.model
+                                            </td>
+                                            <td>
+                                                @car.price
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-success">Удалить</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @Html.Partial("~/Views/Hello/PartialRegModal.cshtml")
+</body>
+</html>

@@ -1,0 +1,137 @@
+﻿@model Auto.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "ViewDeleteVehicle";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name=" viewport" content="width=device-width" />
+</head>
+<body>
+    @Html.Partial("~/Views/Hello/PartialNavbar.cshtml")
+    <div class="form-inline">
+        <div class="form-group">
+            <label>Сортировать по стоимости:</label>
+            <select class="form-control">
+                <option>По возрастанию</option>
+                <option>По убыванию</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Сортировать по дате добавления:</label>
+            <select class="form-control">
+                <option>По возрастанию</option>
+                <option>По убыванию</option>
+            </select>
+        </div>
+    </div>
+    <br>
+
+<table class=" table table-striped" id="car" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Марка</th>
+        <th>Модель</th>
+        <th>Год выпуска</th>
+        <th>Цвет</th>
+        <th>Объем двигателя</th>
+        <th>Коробка передач</th>
+        <th>Состояние машины</th>
+        <th>Цена</th>
+        <th>Комментарий</th>
+    </tr>
+    </thead>
+    @foreach (var mod in Model.VehicleList)
+    {
+        <tr>
+            <td>
+                @mod.Id
+            </td>
+            <td>
+                @mod.brand
+            </td>
+            <td>
+                @mod.model
+            </td>
+            <td>
+                @mod.releaseDate
+            </td>
+            <td>
+                @mod.color
+            </td>
+            <td>
+                @mod.capacity
+            </td>
+            @if (mod.autoKPP.Equals(true))
+            {
+                <td>
+                    Автоматическая
+                </td>
+            }
+            else
+            {
+                <td>
+                    Ручная
+                </td>
+            }
+            @if (mod.isUses.Equals(false))
+            {
+                <td>
+                    Новая
+                </td>
+            }
+            else
+            {
+                <td>
+                    Подержанная
+                </td>
+            }
+            <td>
+                @mod.price $
+            </td>
+            <td>
+                @mod.title
+            </td>
+        </tr>
+    }
+</table>
+    @using (Html.BeginForm("RemoveVehicle", "RemoveVehicle", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Выберите номер для удаления</label>
+            <select class="form-control" id="carModel" name="carId" >
+                @foreach (var mod in Model.VehicleList)
+                {
+                    <option>@mod.Id</option>
+                }
+            </select>
+        </div>
+
+        <div class="controls">
+            <button type="submit" class="btn btn-success">Удалить</button>
+        </div>
+    }
+    <nav class="pager-bottom">
+        <ul class="pager">
+            <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Вернуться</a></li>
+            <li class="next"><a href="#">Вперед <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

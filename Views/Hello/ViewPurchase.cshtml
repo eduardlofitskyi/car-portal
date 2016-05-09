@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+@{
+    ViewBag.Title = "ViewPurchase";
+}
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+    @Html.Partial("PartialNavbar")
+    <div class="form-holder">
+        <form class="form" action='' method="POST" id="Pur">
+            <h2 class="form-title">Форма оформления предзаказа на покупку авто</h2>
+            <div class="form-group">
+                <!-- Name -->
+                <label for="purName" class="control-label"> Имя</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="purName" name="purName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- Last name -->
+                <label for="purLName" class="control-label">Фамилия</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="purLName" name="purLName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="purDate" class="control-label">Дата заказа</label>
+                <br />
+                <br />
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" name="datetimepicker2" />
+                    <span id='mesDate'></span>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker2').datetimepicker({
+                            format: 'DD-MM-YYYY'
+                        });
+                    });
+                </script>
+            </div>
+
+            <div class="form-group">
+                <!-- PassportNum -->
+                <label for="purPass" class="control-label">Номер паспорта</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="purPass" name="purPass">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- City -->
+                <label for="purCity" class="control-label">Город</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="purCity" name="purCity">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- Phone -->
+                <label for="purPhone" class="control-label">Номер телефона</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="purPhone" name="purPhone">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <!-- E-mail -->
+                <label class="control-label" for="email">E-mail</label>
+                <div class="controls">
+                    <input class="form-control" type="email" id="email" name="email" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button class="btn btn-success">Заказать</button>
+                </div>
+            </div>
+        </form>
+    </div>
+   </body>
+</html>

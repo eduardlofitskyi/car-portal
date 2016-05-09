@@ -1,0 +1,111 @@
+﻿@model Auto.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "GetAllVehicle";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+
+
+    <meta name=" viewport" content="width=device-width" />
+</head>
+<body>
+    @Html.Partial("~/Views/Hello/PartialNavbar.cshtml")
+    <table class=" table table-striped" id="car" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Марка</th>
+        <th>Модель</th>
+        <th>Год выпуска</th>
+        <th>Цвет</th>
+        <th>Объем двигателя</th>
+        <th>Коробка передач</th>
+        <th>Состояние машины</th>
+        <th>Цена</th>
+        <th>Комментарий</th>
+        <th></th>
+    </tr>
+    </thead>
+    @{
+        int i = 0;
+        foreach (var mod in Model.VehicleList)
+        {
+            using (Html.BeginForm("DetailsVehicle", "DetailsVehicle", FormMethod.Post))
+            {
+                <input name="carId" type="hidden" value="@Model.VehicleList[i].Id">
+           
+                i++;
+            <tr>
+                <td >
+                    @mod.brand
+                </td>
+                <td >
+                    @mod.model
+                </td>
+                <td>
+                    @mod.releaseDate
+                </td>
+                <td>
+                    @mod.color
+                </td>
+                <td>
+                    @mod.capacity
+                </td>
+                @if (mod.autoKPP.Equals(true))
+                {
+                    <td>
+                        Автоматическая
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Ручная
+                    </td>
+                }
+                @if (mod.isUses.Equals(false))
+                {
+                    <td>
+                        Новая
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Подержанная
+                    </td>
+                }
+                <td>
+                    @mod.price $
+                </td>
+                <td>
+                    <div id="comment">@mod.title</div>
+                </td>
+                @if (Session["User"] != null)
+                {
+                    <td>
+                        <button type="submit" class="btn btn-success">В корзину</button>
+                    </td>
+                }
+            </tr>
+        }
+    }
+}
+</table>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+

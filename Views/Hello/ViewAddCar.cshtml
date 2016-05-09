@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "ViewAddCar";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    @Html.Partial("PartialNavbar")
+    @using (Html.BeginForm("AddVehicle", "AddVehicle", FormMethod.Post, new { @class = "form", @id="addCar" }))
+    {
+        <div class=" container">
+            <span id='mesFill'></span>
+            <h2 class="form-title">Заполните пожалуйста все поля</h2>
+            <div class="form-group">
+                <!-- brand -->
+                <label for="brand" class="control-label"> Марка машины</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="brand" name="brand">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- model -->
+                <label for="model" class="control-label">Модель машины</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="model" name="model">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- release date -->
+                <label for="relDate" class="control-label">Год выпуска</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="relDate" name="relDate" maxlength="4">
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <!-- City -->
+                <label for="color" class="control-label">Цвет</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="color" name="color">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <!-- KPP -->
+                <label>Тип коробки передач</label>
+                <select class="form-control" name="autoKPP">
+                    <option>Ручная</option>
+                    <option>Автоматическая</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!-- Capacity -->
+                <label for="capacity" class="control-label">Объем двигателя</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="capacity" name="capacity">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <!-- isUsed -->
+                <label>Cостояние машины</label>
+                <select class="form-control" name="isUses">
+                    <option>Новая</option>
+                    <option>Подержанная</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!-- Price -->
+                <label for="price" class="control-label">Цена</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="price" name="price">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <!-- Comment -->
+                <label for="carTitle" class="control-label">Комметарий</label>
+                <div class="controls">
+                    <textarea class="form-control" id="carTitle" name="carTitle"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Добавить</button>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

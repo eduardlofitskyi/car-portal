@@ -1,0 +1,201 @@
+.container{
+	width: 800px !important;
+}
+.modal-backdrop {
+      background-color: #000;
+      bottom: 0;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 0 !important;
+}
+.picture {
+    width: 225px;
+    height: 370px;
+    border: 1px dotted grey;
+}
+.centered{
+    margin: 0 40px !important;
+    width: 145px;
+}
+
+.picture-title {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Tahoma, Arial;
+}
+.picture img{
+    width: 175px;
+    height: 175px;
+    margin: 0 25px;
+}
+.item-text {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 0 5px 10px 10px;
+}
+.item-holder {
+    margin: 0;
+    padding: 0;
+}
+.item-holder li {
+    list-style-type: none;
+    padding: 0;
+    float: left;
+    margin-right: 47px;
+    margin-top: 50px;
+}
+.item-holder li:last-child {
+    margin-right: 0;
+}
+.picture a {
+    text-align: center;
+}
+#loginForm {
+    margin: 5px 0;
+}
+#navbar-left a:hover {
+    background: #000;
+}
+#loginForm input:focus {
+      background-image: linear-gradient(#d2d2d2,#d2d2d2),linear-gradient(#d2d2d2,#223323);
+}
+#Reg input:focus {
+     background-image: linear-gradient(#fff0f5,#fff0f5),linear-gradient(#d2d2d2,#223323);
+}
+#Reg {
+    display: table;
+    margin: 0 auto;
+    width: 600px;
+    padding: 12px;
+}
+.form-holder {
+   
+}
+.form-title {
+    font-size: 24px;
+    text-align: center;
+}
+#signIn {
+    background-image: linear-gradient(#d2d2d2,#d2d2d2),linear-gradient(#d2d2d2,#223323);
+}
+#signIn {
+    margin: 5px 20px;
+    width: 600px;
+}
+#Pur {
+    display: table;
+    margin: 0 auto;
+    width: 600px;
+    padding: 12px;
+}
+
+#Pur input:focus {
+     background-image: linear-gradient(#fff0f5,#fff0f5),linear-gradient(#d2d2d2,#223323);
+}
+#list input:focus {
+    background-image: linear-gradient(#fff0f5,#fff0f5),linear-gradient(#d2d2d2,#223323);
+}
+#date {
+    width: 300px;
+}
+
+
+#btnSign{
+
+    text-align: center!important;
+    font-size: 10px; 
+}
+#btnGetAll {
+    text-align: center !important;
+    font-size: 10px;
+}
+#btnGetDel {
+    text-align: center !important;
+    font-size: 10px;
+}
+
+.pager .previous a{
+    border-radius: 0px;
+}
+    
+.pager .next a{
+    border-radius: 0px;
+}
+.pager li a {
+    color: #000000;
+}
+.selectpicker {
+    font-size: 11px;
+}
+.selectpicker span {
+    text-transform: none;
+}
+.selectpicker.btn {
+    padding: 5px 20px 5px 7px !important;
+}
+
+.search {
+    width: 50%;
+    float: left;
+}
+ .pager-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+  }
+ #pickerHolder label {
+     font-size: 12px;
+     width: 90px;
+ }
+ #pickerHolder select {
+     margin-left: 25px;
+ }
+ #pickerHolder {
+     background:azure;
+     border-radius: 10px;
+ }
+ .label1 {
+     font-size: 12px;
+     margin-right: 5px;
+     padding-right: 70px;
+     size: auto;
+ }
+ .label2 {
+     font-size: 12px;
+     margin-right: 5px;
+     size: auto;
+ }
+ #pickerHolder td:nth-child(2) {
+     padding-top: 25px;
+ }
+ #year span {
+     width: 100px !important;
+ }
+
+
+.loginCenter p{
+	margin-top:20px;
+}
+
+#listCars {
+    width: 100%;
+    height: 40px; 
+}
+#listHolder {
+    width: 100%;
+}
+
+#comment {
+    width: 250px !important;
+    word-wrap: break-word;
+}
+
+#messageFields {
+    color: red;
+}
+#mesFill {
+    color: red;
+}
